@@ -2,14 +2,20 @@
 	"name": "fcc-exercise-tracker",
 	"version": "0.1.0",
 	"description": "A REST API project, part of Free Code Camp's curriculum",
-	"main": "server.js",
+	"main": "dist/server.js",
 	"scripts": {
-		"start": "node server.js"
+		"prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+		"build": "tsc",
+		"prestart": "npm run build",
+		"start": "node .",
+		"dec": "nodemon .",
+		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
-		"dotenv": "^8.2.0",
+		"cors": "^2.8.5",
+		"dotenv": "^8.6.0",
 		"express": "^4.16.4",
-		"cors": "^2.8.5"
+		"express-generator-typescript": "^1.8.3"
 	},
 	"repository": {
 		"url": "https://github.com/freeCodeCamp/boilerplate-project-exercisetracker"
@@ -18,5 +24,12 @@
 	"keywords": [
 		"node",
 		"express"
-	]
+	],
+	"devDependencies": {
+		"@types/cors": "^2.8.12",
+		"@types/express": "^4.17.13",
+		"@types/dotenv": "^8.2.0",
+		"@types/node": "^17.0.24",
+		"tslint": "^6.1.3"
+	}
 }
