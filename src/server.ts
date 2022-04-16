@@ -1,8 +1,9 @@
 import express from 'express'
-import {Request, Response} from 'express'
+
 const app = express()
 import cors from 'cors'
 import dotenv from 'dotenv'
+import * as routes from "./router";
 
 // initialize configuration
 dotenv.config();
@@ -10,13 +11,15 @@ dotenv.config();
 const port = process.env.PORT || 3000;
 
 app.use(cors())
+app.use(express.urlencoded({
+  extended: true
+}));
 app.use(express.static('public'))
 
 
+// Configure routes
+routes.mount( app );
 
-app.get('/', (req: Request, res: Response): void => {
-  res.sendFile(__dirname + '/views/index.html')
-});
 
 
 

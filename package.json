@@ -7,15 +7,19 @@
 		"prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
 		"build": "tsc",
 		"prestart": "npm run build",
+		"predev": "npm run build",
 		"start": "node .",
-		"dec": "nodemon .",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"dev:start": "npm run start",
+		"dev": "nodemon --watch src -e ts --exec npm run dev:start",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"db:create": "node -r dotenv/config ./dist/db/create.js"
 	},
 	"dependencies": {
 		"cors": "^2.8.5",
 		"dotenv": "^8.6.0",
 		"express": "^4.16.4",
-		"express-generator-typescript": "^1.8.3"
+		"express-generator-typescript": "^1.8.3",
+		"pg": "^8.7.3"
 	},
 	"repository": {
 		"url": "https://github.com/freeCodeCamp/boilerplate-project-exercisetracker"
@@ -27,9 +31,10 @@
 	],
 	"devDependencies": {
 		"@types/cors": "^2.8.12",
-		"@types/express": "^4.17.13",
 		"@types/dotenv": "^8.2.0",
+		"@types/express": "^4.17.13",
 		"@types/node": "^17.0.24",
+		"@types/pg": "^8.6.5",
 		"tslint": "^6.1.3"
 	}
 }
